@@ -100,6 +100,7 @@ function lib:Window(text, preset, closebind)
     Main.Parent = ui
     Main.AnchorPoint = Vector2.new(0.5, 0.5)
     Main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    Main.CornerRadius = UDim.new(0, 2)
     Main.BorderSizePixel = 0
     Main.Position = UDim2.new(0.5, 0, 0.5, 0)
     Main.Size = UDim2.new(0, 0, 0, 0)
@@ -140,8 +141,6 @@ function lib:Window(text, preset, closebind)
 
     MakeDraggable(DragFrame, Main)
 
-    blur = Instance.new("BlurEffect", game.Lighting)
-    blur.Name = "Blur_Animation"
     local uitoggled = false
     UserInputService.InputBegan:Connect(
         function(io, p)
@@ -151,7 +150,6 @@ function lib:Window(text, preset, closebind)
                     uitoggled = true
                     wait(.5)
                     knixhub.Enabled = false
-                    blur.Size = 0
                 else
                     Main:TweenSize(
                         UDim2.new(0, 560, 0, 319),
@@ -161,7 +159,6 @@ function lib:Window(text, preset, closebind)
                         true
                     )
                     knixhub.Enabled = true
-                    blur.Size = 2
                     uitoggled = false
                 end
             end
